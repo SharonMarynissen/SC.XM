@@ -6,7 +6,7 @@
       <id name="TicketNumber">
         <generator class="native"/>
       </id>
-      
+      <discriminator column="Subclass" type="String"/>
     <property name="AccountId"/>
     <property name="Text"/>
     <property name="DateOpened" type="UtcDateTime"/>
@@ -16,6 +16,8 @@
         <key column ="Ticket_id"/>
         <one-to-many class="TicketResponse"/>
     </bag>
-    
+      <subclass name="HardwareTicket" discriminator-value="HT">
+        <property name="DeviceName"/>
+      </subclass>
   </class>
 </hibernate-mapping>

@@ -156,7 +156,6 @@ namespace SC.DAL.NHibernate
             {
                 try
                 {
-
                     session.Save(response);
                     tx.Commit();
                     return response;
