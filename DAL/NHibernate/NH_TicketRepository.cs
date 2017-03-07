@@ -131,10 +131,13 @@ namespace SC.DAL.NHibernate
         {
             using (var tx = session.BeginTransaction())
             {
+
+
                 try
                 {
                     IEnumerable<TicketResponse> responses =
-                        session.Query<TicketResponse>().Where(tr => tr.Ticket.TicketNumber == ticketNumber);
+                        session.Query<TicketResponse>().Where(tr => tr.Ticket.TicketNumber == ticketNumber).ToList();
+
                     tx.Commit();
                     return responses;
                 }
@@ -144,7 +147,7 @@ namespace SC.DAL.NHibernate
                     throw;
                 }
             }
-            
+
         }
 
         public TicketResponse CreateTicketResponse(TicketResponse response)
@@ -153,11 +156,12 @@ namespace SC.DAL.NHibernate
             {
                 try
                 {
+
                     session.Save(response);
                     tx.Commit();
                     return response;
                 }
-                catch (Exception )
+                catch (Exception)
                 {
                     tx.Rollback();
                     throw;

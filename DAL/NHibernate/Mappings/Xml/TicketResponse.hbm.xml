@@ -3,11 +3,12 @@
   <class name="TicketResponse" table="ticketResponse">
     
     <id name="Id">
-      <generator class="native"/>
+      <generator class="increment"/>
     </id>
     
     <property name="Text"/>
     <property name="Date"/>
     <property name="IsClientResponse"/>
+    <many-to-one name="Ticket" column="Ticket_id"/>
   </class>
 </hibernate-mapping>

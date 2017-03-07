@@ -40,7 +40,8 @@ namespace SC.UI.CA
       catch (Exception e)
       {
         Console.WriteLine();
-        Console.WriteLine("Er heeft zich een onverwachte fout voorgedaan!");
+        //Console.WriteLine("Er heeft zich een onverwachte fout voorgedaan!");
+        Console.WriteLine(e.Message);
         Console.WriteLine();
       }
     }
