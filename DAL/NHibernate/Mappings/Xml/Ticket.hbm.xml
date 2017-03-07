@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="SC.BL.Domain" namespace="SC.BL.Domain">
+  
+    <class name="Ticket" table="`Ticket`">
+    
+      <id name="TicketNumber">
+        <generator class="native"/>
+      </id>
+      
+    <property name="AccountId"/>
+    <property name="Text"/>
+    <property name="DateOpened" type="UtcDateTime"/>
+    <property name="State" type="TicketState"/>
+    
+      <set name="Responses" table="TicketResponse" cascade="save-update" inverse="true">
+        <key column ="ticket_ticketNbr"/>
+        <!-- <list-index column="idx" /> -->
+        <one-to-many class="TicketResponse"/>
+    </set>
+    
+  </class>
+</hibernate-mapping>
