@@ -9,7 +9,5 @@
     <property name="Text"/>
     <property name="Date"/>
     <property name="IsClientResponse"/>
-    
-    <many-to-one name="Ticket" column="ticket_ticketNbr" cascade="save-update"/>
   </class>
 </hibernate-mapping>

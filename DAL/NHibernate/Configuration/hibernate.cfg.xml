@@ -10,8 +10,6 @@
     <property name="dialect">
       NHibernate.Dialect.MsSql2012Dialect
     </property>
-
-    <property name="show_sql">true</property>
    
     <mapping assembly="SC.DAL" />
   </session-factory>
