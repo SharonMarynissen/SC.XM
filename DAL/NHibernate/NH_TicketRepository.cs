@@ -6,6 +6,7 @@ using NHibernate;
 using NHibernate.Cfg;
 using NHibernate.Linq;
 using SC.BL.Domain;
+using SC.DAL.NHibernate.Configuration;
 
 namespace SC.DAL.NHibernate
 {
@@ -15,9 +16,10 @@ namespace SC.DAL.NHibernate
 
         public NhTicketRepository()
         {
-            session = new Configuration()
-                .Configure(Assembly.GetExecutingAssembly(), "SC.DAL.NHibernate.Configuration.hibernate.cfg.xml")
-                .BuildSessionFactory().OpenSession();
+            //session = new global::NHibernate.Cfg.Configuration()
+            //    .Configure(Assembly.GetExecutingAssembly(), "SC.DAL.NHibernate.Configuration.hibernate.cfg.xml")
+            //    .BuildSessionFactory().OpenSession();
+            session = new NhSqlServLoquaciousConf().Session;
         }
 
         public IEnumerable<Ticket> ReadTickets()

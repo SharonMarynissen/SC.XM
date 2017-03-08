@@ -40,7 +40,6 @@ namespace SC.DAL.NHibernate.Mappings.Code
             {
                 mapper.Column("State");
                 mapper.NotNullable(false);
-                mapper.Type<TicketState>();
             });
             Bag(t => t.Responses,
                 mapper =>

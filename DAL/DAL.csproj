@@ -62,6 +62,7 @@
     <Compile Include="EF\SupportCenterDbInitializer.cs" />
     <Compile Include="EF\TicketRepository.cs" />
     <Compile Include="ITicketRepository.cs" />
+    <Compile Include="NHibernate\Configuration\NH_SqlServ_LoquaciousConf.cs" />
     <Compile Include="NHibernate\Mappings\Code\TicketCodeMapping.cs" />
     <Compile Include="NHibernate\Mappings\Code\TicketResponseCodeMapping.cs" />
     <Compile Include="NHibernate\NH_TicketRepository.cs" />
@@ -81,10 +82,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="NHibernate\Configuration\hibernate.cfg.xml">
+    <None Include="NHibernate\Configuration\hibernate.cfg.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
+    </None>
     <EmbeddedResource Include="NHibernate\Mappings\Xml\Ticket.hbm.xml" />
     <EmbeddedResource Include="NHibernate\Mappings\Xml\TicketResponse.hbm.xml" />
   </ItemGroup>
