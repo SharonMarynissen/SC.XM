@@ -19,7 +19,8 @@ namespace SC.DAL.NHibernate
             //session = new global::NHibernate.Cfg.Configuration()
             //    .Configure(Assembly.GetExecutingAssembly(), "SC.DAL.NHibernate.Configuration.hibernate.cfg.xml")
             //    .BuildSessionFactory().OpenSession();
-            session = new NhSqlServLoquaciousConf().Session;
+            //session = new NhSqlServLoquaciousConf().Session;
+            session = new FluentSqlServerConf().Session;
         }
 
         public IEnumerable<Ticket> ReadTickets()
