@@ -66,6 +66,7 @@
     <Compile Include="EF\SupportCenterDbInitializer.cs" />
     <Compile Include="EF\TicketRepository.cs" />
     <Compile Include="ITicketRepository.cs" />
+    <Compile Include="NHibernate\Configuration\FluentSqlServerConf.cs" />
     <Compile Include="NHibernate\Configuration\NH_SqlServ_LoquaciousConf.cs" />
     <Compile Include="NHibernate\Mappings\Code\TicketCodeMapping.cs" />
     <Compile Include="NHibernate\Mappings\Code\TicketResponseCodeMapping.cs" />
