@@ -13,7 +13,7 @@ namespace SC.DAL.NHibernate.Configuration
 {
     public class NhSqlServLoquaciousConf
     {
-        private readonly ISession session;
+        private readonly ISessionFactory sessionFactory;
 
         public NhSqlServLoquaciousConf()
         {
@@ -23,15 +23,15 @@ namespace SC.DAL.NHibernate.Configuration
                 db.Dialect<MsSql2012Dialect>();
                 db.Driver<SqlClientDriver>();
                 db.ConnectionString =
-                    "Data Source=ASUS_WOUTER\\SQLSERVER2012;Initial Catalog=SC_NHibernate;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+                    @"Data Source=.\SQLSERVER2012;Initial Catalog=SC_NHibernate;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
                 db.ConnectionReleaseMode = ConnectionReleaseMode.OnClose;
                 db.LogSqlInConsole = true;
                 db.LogFormattedSql = true;
             })
             .AddMapping(GetMappings());
 
-            var sessionFactory = config.BuildSessionFactory();
-            session = sessionFactory.OpenSession();
+            sessionFactory = config.BuildSessionFactory();
+            var session = sessionFactory.OpenSession();
 
             using (var tx = session.BeginTransaction())
             {
@@ -55,6 +55,6 @@ namespace SC.DAL.NHibernate.Configuration
             return mapper.CompileMappingForAllExplicitlyAddedEntities();
         }
 
-        public ISession Session { get { return session; } }
+        public ISessionFactory SessionFactory { get { return sessionFactory; } }
     }
 }

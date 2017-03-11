@@ -30,13 +30,13 @@ namespace SC.DAL.NHibernate.Configuration
                     .ShowSql()
                 ).CurrentSessionContext<ThreadLocalSessionContext>()
                 .BuildConfiguration();
-            var sessionFactory = config.BuildSessionFactory();
-            session = sessionFactory.OpenSession();
-            new SchemaExport(config).Execute(true, true, false);
+              sessionFactory = config.BuildSessionFactory();
+            //session = sessionFactory.OpenSession();
+            new SchemaUpdate(config).Execute(true, true);
         }
 
-        private ISession session;
+        private ISessionFactory sessionFactory;
 
-        public ISession Session { get { return session; } }
+        public ISessionFactory SessionFactory { get { return sessionFactory; } }
     }
 }

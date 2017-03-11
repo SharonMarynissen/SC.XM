@@ -89,10 +89,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="NHibernate\Configuration\hibernate.cfg.xml">
+    <EmbeddedResource Include="NHibernate\Configuration\hibernate.cfg.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
-    </None>
+    </EmbeddedResource>
     <EmbeddedResource Include="NHibernate\Mappings\Xml\Ticket.hbm.xml" />
     <EmbeddedResource Include="NHibernate\Mappings\Xml\TicketResponse.hbm.xml" />
   </ItemGroup>

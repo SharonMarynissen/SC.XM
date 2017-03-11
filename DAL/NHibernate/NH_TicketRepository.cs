@@ -12,131 +12,99 @@ namespace SC.DAL.NHibernate
 {
     public class NhTicketRepository : ITicketRepository
     {
-        private static ISession session;
+        private static ISessionFactory sessionFactory;
 
         public NhTicketRepository()
         {
-            //session = new global::NHibernate.Cfg.Configuration()
+            //sessionFactory = new global::NHibernate.Cfg.Configuration()
             //    .Configure(Assembly.GetExecutingAssembly(), "SC.DAL.NHibernate.Configuration.hibernate.cfg.xml")
-            //    .BuildSessionFactory().OpenSession();
-            //session = new NhSqlServLoquaciousConf().Session;
-            session = new FluentSqlServerConf().Session;
+            //    .BuildSessionFactory();
+            //sessionFactory = new NhSqlServLoquaciousConf().SessionFactory;
+            sessionFactory = new FluentSqlServerConf().SessionFactory;
         }
 
         public IEnumerable<Ticket> ReadTickets()
         {
-            using (var tx = session.BeginTransaction())
+            using (var session = sessionFactory.OpenSession())
             {
-                try
+                using (var tx = session.BeginTransaction())
                 {
-                    IEnumerable<Ticket> tickets = session.Query<Ticket>();
+                    IEnumerable<Ticket> tickets = session.Query<Ticket>().Fetch(t => t.Responses);
                     tx.Commit();
-                    return tickets;
-                }
-                catch (Exception)
-                {
-                    tx.Rollback();
-                    throw;
+                    return tickets.ToList();
                 }
             }
+
         }
 
         public Ticket CreateTicket(Ticket ticket)
         {
-            using (var tx = session.BeginTransaction())
+            using (var session = sessionFactory.OpenSession())
             {
-                object id;
-                try
+                using (var tx = session.BeginTransaction())
                 {
-                    id = session.Save(ticket);
+                    object id = session.Save(ticket);
                     tx.Commit();
                     return session.Get<Ticket>(id);
-                }
-                catch (Exception)
-                {
-                    tx.Rollback();
-                    throw;
                 }
             }
         }
 
         public Ticket ReadTicket(int ticketNumber)
         {
-            using (var tx = session.BeginTransaction())
+            using (var session = sessionFactory.OpenSession())
             {
-                try
+                using (var tx = session.BeginTransaction())
                 {
                     Ticket t = session.Get<Ticket>(ticketNumber);
                     tx.Commit();
                     return t;
-                }
-                catch (Exception)
-                {
-                    tx.Rollback();
-                    throw;
                 }
             }
         }
 
         public void UpdateTicket(Ticket ticket)
         {
-            using (var tx = session.BeginTransaction())
+            using (var session = sessionFactory.OpenSession())
             {
-                try
+                using (var tx = session.BeginTransaction())
                 {
                     session.Update(ticket);
                     tx.Commit();
-                }
-                catch (Exception)
-                {
-                    tx.Rollback();
-                    throw;
                 }
             }
         }
 
         public void UpdateTicketStateToClosed(int ticketNumber)
         {
-            using (var tx = session.BeginTransaction())
+            using (var session = sessionFactory.OpenSession())
             {
-                try
+                using (var tx = session.BeginTransaction())
                 {
                     Ticket t = session.Get<Ticket>(ticketNumber);
                     t.State = TicketState.Closed;
                     tx.Commit();
-                }
-                catch (Exception)
-                {
-                    tx.Rollback();
-                    throw;
                 }
             }
         }
 
         public void DeleteTicket(int ticketNumber)
         {
-            using (var tx = session.BeginTransaction())
+            using (var session = sessionFactory.OpenSession())
             {
-                try
+                using (var tx = session.BeginTransaction())
                 {
                     session.Delete(session.Get<Ticket>(ticketNumber));
                     tx.Commit();
-                }
-                catch (Exception)
-                {
-                    tx.Rollback();
-                    throw;
                 }
             }
         }
 
         public IEnumerable<TicketResponse> ReadTicketResponsesOfTicket(int ticketNumber)
         {
-            using (var tx = session.BeginTransaction())
+            using (var session = sessionFactory.OpenSession())
             {
-
-
-                try
+                using (var tx = session.BeginTransaction())
                 {
                     IEnumerable<TicketResponse> responses =
                         session.Query<TicketResponse>().Where(tr => tr.Ticket.TicketNumber == ticketNumber).ToList();
@@ -144,17 +112,12 @@ namespace SC.DAL.NHibernate
                     tx.Commit();
                     return responses;
                 }
-                catch (Exception)
-                {
-                    tx.Rollback();
-                    throw;
-                }
             }
-
         }
 
         public TicketResponse CreateTicketResponse(TicketResponse response)
         {
+            var session = sessionFactory.OpenSession();
             using (var tx = session.BeginTransaction())
             {
                 try
@@ -167,6 +130,10 @@ namespace SC.DAL.NHibernate
                 {
                     tx.Rollback();
                     throw;
+                }
+                finally
+                {
+                    session.Close();
                 }
             }
         }
