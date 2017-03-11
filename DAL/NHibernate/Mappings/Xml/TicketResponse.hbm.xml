@@ -7,8 +7,8 @@
     </id>
     
     <property name="Text"/>
-    <property name="Date"/>
+    <property name="Date" type="DateTime"/>
     <property name="IsClientResponse"/>
-    <many-to-one name="Ticket" column="Ticket_id" cascade="all-delete-orphan"/>
+    <many-to-one name="Ticket" column="Ticket_TicketNumber" class="Ticket" />
   </class>
 </hibernate-mapping>
