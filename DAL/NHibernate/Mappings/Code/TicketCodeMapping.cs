@@ -19,28 +19,33 @@ namespace SC.DAL.NHibernate.Mappings.Code
                 mapper.Generator(Generators.Native);
                 mapper.Column("TicketNumber");
             });
+
             Property(t => t.AccountId, mapper =>
             {
                 mapper.Column("AccountId");
                 mapper.NotNullable(false);
             });
+
             Property(t => t.Text, mapper =>
             {
                 mapper.Column("Text");
                 mapper.NotNullable(false);
                 mapper.Type(NHibernateUtil.String);
             });
+
             Property(t => t.DateOpened, mapper =>
             {
                 mapper.Column("DateOpened");
                 mapper.NotNullable(false);
                 mapper.Type(NHibernateUtil.DateTime);
             });
+
             Property(t => t.State, mapper =>
             {
                 mapper.Column("State");
                 mapper.NotNullable(false);
             });
+
             Bag(t => t.Responses,
                 mapper =>
                 {

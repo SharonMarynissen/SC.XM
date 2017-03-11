@@ -31,8 +31,8 @@ namespace SC.DAL.NHibernate.Configuration
                 ).CurrentSessionContext<ThreadLocalSessionContext>()
                 .BuildConfiguration();
               sessionFactory = config.BuildSessionFactory();
-            //session = sessionFactory.OpenSession();
-            new SchemaUpdate(config).Execute(true, true);
+            //new SchemaUpdate(config).Execute(true, true);
+            new SchemaExport(config).Create(true, true);
         }
 
         private ISessionFactory sessionFactory;

@@ -35,11 +35,7 @@ namespace SC.DAL.NHibernate.Configuration
 
             using (var tx = session.BeginTransaction())
             {
-                new SchemaExport(config).Execute(
-                    true,
-                    true,
-                    justDrop:false
-                );
+                new SchemaUpdate(config).Execute(true, true);
                 tx.Commit();
             }
             session.Clear();
