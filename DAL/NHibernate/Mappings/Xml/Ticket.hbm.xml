@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="SC.BL.Domain" namespace="SC.BL.Domain">
   
-    <class name="Ticket" table="`Ticket`" discriminator-value="Ticket">
+    <class name="Ticket" discriminator-value="Ticket">
     
       <id name="TicketNumber">
         <generator class="native"/>
