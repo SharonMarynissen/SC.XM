@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using NHibernate;
-using NHibernate.Cfg;
 using NHibernate.Linq;
 using SC.BL.Domain;
-using SC.DAL.NHibernate.Configuration;
+using NHibernate.Cfg;
+using NHibernate.Tool.hbm2ddl;
 
 namespace SC.DAL.NHibernate
 {
@@ -15,10 +15,11 @@ namespace SC.DAL.NHibernate
         private static ISessionFactory sessionFactory;
 
         public NhTicketRepository()
-        {
-            sessionFactory = new global::NHibernate.Cfg.Configuration()
-                .Configure(Assembly.GetExecutingAssembly(), "SC.DAL.NHibernate.Configuration.hibernate.cfg.xml")
-                .BuildSessionFactory();
+        {         
+            var cfg = new global::NHibernate.Cfg.Configuration()
+                .Configure(Assembly.GetExecutingAssembly(), "SC.DAL.NHibernate.Configuration.hibernate.cfg.xml");
+            new SchemaUpdate(cfg).Execute(true, true);
+            sessionFactory = cfg.BuildSessionFactory();
             //sessionFactory = new NhSqlServLoquaciousConf().SessionFactory;
             //sessionFactory = new FluentSqlServerConf().SessionFactory;
         }

@@ -3,12 +3,13 @@
   <class name="TicketResponse" table="ticketResponse">
     
     <id name="Id">
-      <generator class="increment"/>
+      <generator class="native"/>
     </id>
     
     <property name="Text"/>
     <property name="Date" type="DateTime"/>
     <property name="IsClientResponse"/>
-    <many-to-one name="Ticket" column="Ticket_TicketNumber" class="Ticket"/>
+    <many-to-one name="Ticket" column="Ticket_TicketNumber" class="Ticket" cascade="all-delete-orphan" />    
+  
   </class>
 </hibernate-mapping>
