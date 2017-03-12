@@ -17,12 +17,12 @@ namespace SC.DAL.NHibernate
 
         public NhTicketRepository()
         {         
-            //var cfg = new global::NHibernate.Cfg.Configuration()
-            //    .Configure(Assembly.GetExecutingAssembly(), "SC.DAL.NHibernate.Configuration.hibernate.cfg.xml");
-            //new SchemaUpdate(cfg).Execute(false, true);
-            //sessionFactory = cfg.BuildSessionFactory();
+            var cfg = new global::NHibernate.Cfg.Configuration()
+                .Configure(Assembly.GetExecutingAssembly(), "SC.DAL.NHibernate.Configuration.hibernate.cfg.xml");
+            new SchemaUpdate(cfg).Execute(true, true);
+            sessionFactory = cfg.BuildSessionFactory();
             //sessionFactory = new NhSqlServLoquaciousConf().SessionFactory;
-            sessionFactory = new FluentSqlServerConf().SessionFactory;
+            //sessionFactory = new FluentSqlServerConf().SessionFactory;
         }
 
         public IEnumerable<Ticket> ReadTickets()
