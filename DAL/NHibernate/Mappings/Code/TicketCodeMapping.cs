@@ -50,12 +50,12 @@ namespace SC.DAL.NHibernate.Mappings.Code
                 mapper =>
                 {
                     mapper.Key(k => k.Column("Ticket_id"));
-                    mapper.Cascade(Cascade.Persist);
+                    mapper.Cascade(Cascade.DeleteOrphans);
                     mapper.Inverse(true);
-                },
-                relation => relation.OneToMany(
-                    mapping => mapping.Class(typeof(TicketResponse))
-                    )
+                }
+                //relation => relation.OneToMany(
+                //    mapping => mapping.Class(typeof(TicketResponse))
+                //    )
             );
         }
     }
@@ -64,7 +64,7 @@ namespace SC.DAL.NHibernate.Mappings.Code
     {
         public HardwareTicketCodeMapping()
         {
-            DiscriminatorValue("HT");
+            DiscriminatorValue("HardwareTicket");
             Property(ht => ht.DeviceName, mapper =>
             {
                 mapper.Column("DeviceName");

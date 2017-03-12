@@ -31,15 +31,15 @@ namespace SC.DAL.NHibernate.Configuration
             .AddMapping(GetMappings());
 
             sessionFactory = config.BuildSessionFactory();
-            var session = sessionFactory.OpenSession();
+        //    var session = sessionFactory.OpenSession();
 
-            using (var tx = session.BeginTransaction())
-            {
-                new SchemaUpdate(config).Execute(true, true);
-                tx.Commit();
-            }
-            session.Clear();
-        }
+        //    using (var tx = session.BeginTransaction())
+        //    {
+        //        new SchemaUpdate(config).Execute(true, false);
+        //        tx.Commit();
+        //    }
+        //    session.Clear();
+       }
 
         private HbmMapping GetMappings()
         {

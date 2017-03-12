@@ -16,10 +16,10 @@ namespace SC.DAL.NHibernate.Mappings.Fluent
             Map(t => t.AccountId, "AccountId").Nullable();
             Map(t => t.Text, "Text").Nullable();
             Map(t => t.DateOpened, "DateOpened").Nullable();
-            Map(t => t.State, "State").Nullable();
+            Map(t => t.State, "State").CustomType<TicketState>().Nullable();
             HasMany(t => t.Responses)
                 .Cascade.SaveUpdate()
-                .KeyColumn("Ticket_id")
+                .KeyColumn("Ticket_TicketNumber")
                 .Inverse();
         }
     }
@@ -28,7 +28,7 @@ namespace SC.DAL.NHibernate.Mappings.Fluent
     {
         public HardwareTicketFluentMapping()
         {
-            DiscriminatorValue("HT");
+            DiscriminatorValue("HardwareTicket");
             Map(ht => ht.DeviceName, "DeviceName").Nullable();
         }
     }

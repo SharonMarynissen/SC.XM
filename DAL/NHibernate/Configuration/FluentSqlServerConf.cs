@@ -32,7 +32,7 @@ namespace SC.DAL.NHibernate.Configuration
                 .BuildConfiguration();
               sessionFactory = config.BuildSessionFactory();
             //new SchemaUpdate(config).Execute(true, true);
-            new SchemaExport(config).Create(true, true);
+            //new SchemaExport(config).Create(true, true);
         }
 
         private ISessionFactory sessionFactory;
