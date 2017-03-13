@@ -14,7 +14,7 @@
     <property name="State" type="TicketState"/>
     
     
-    <bag name="Responses" table="TicketResponse" cascade="save-update" inverse="true">
+    <bag name="Responses" table="TicketResponse" cascade="save-update" inverse="true" lazy="true">
         <key column ="Ticket_TicketNumber" />
         <one-to-many class="TicketResponse"/>
     </bag>

@@ -18,8 +18,8 @@ namespace SC.BL
     public TicketManager()
     {
       //repo = new TicketRepositoryHC();
-      //repo = new SC.DAL.EF.TicketRepository();    //Used with EF
-      repo = new NhTicketRepository();              //Used with NHibernate
+      repo = new SC.DAL.EF.TicketRepository();    //Used with EF
+      //repo = new NhTicketRepository();              //Used with NHibernate
     }
 
     public IEnumerable<Ticket> GetTickets()
