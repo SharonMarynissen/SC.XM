@@ -22,8 +22,9 @@ namespace SC.DAL.NHibernate.Configuration
             {
                 db.Dialect<MsSql2012Dialect>();
                 db.Driver<SqlClientDriver>();
-                db.ConnectionString =
-                    @"Data Source=.\SQLSERVER2012;Initial Catalog=SC_NHibernate;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+                db.ConnectionStringName = "SC_NHibernate";
+                //db.ConnectionString =
+                //    @"Data Source=.\SQLSERVER2012;Initial Catalog=SC_NHibernate;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
                 db.ConnectionReleaseMode = ConnectionReleaseMode.OnClose;
                 db.LogSqlInConsole = true;
                 db.LogFormattedSql = true;
