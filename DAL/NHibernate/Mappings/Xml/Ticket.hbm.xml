@@ -8,14 +8,14 @@
       </id>
       
     <discriminator column="Discriminator"/>
-    <property name="AccountId"/>
-    <property name="Text"/>
-    <property name="DateOpened" type="DateTime"/>
-    <property name="State" type="TicketState"/>
+    <property name="AccountId" not-null="true"/>
+    <property name="Text" not-null="true"/>
+    <property name="DateOpened" type="DateTime" not-null="true"/>
+    <property name="State" type="TicketState" not-null="true"/>
     
     
-    <bag name="Responses" table="TicketResponse" cascade="save-update" inverse="true" lazy="true">
-        <key column ="Ticket_TicketNumber" />
+    <bag name="Responses" table="TicketResponse" cascade="save-update" inverse="true" lazy="true" >
+        <key column ="Ticket_TicketNumber"/>
         <one-to-many class="TicketResponse"/>
     </bag>
       

@@ -12,6 +12,7 @@ namespace SC.DAL.NHibernate.Mappings.Fluent
     {
         public TicketMappingFluent()
         {
+            DiscriminateSubClassesOnColumn("Discriminator", "Ticket");
             Id(t => t.TicketNumber, "TicketNumber").GeneratedBy.Native();
             Map(t => t.AccountId, "AccountId").Nullable();
             Map(t => t.Text, "Text").Nullable();

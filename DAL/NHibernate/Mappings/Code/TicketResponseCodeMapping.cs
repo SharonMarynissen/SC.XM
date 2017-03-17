@@ -17,7 +17,7 @@ namespace SC.DAL.NHibernate.Mappings.Code
             Id(tr=>tr.Id, mapper =>
             {
                 mapper.Column("Id");
-                mapper.Generator(Generators.Increment);
+                mapper.Generator(Generators.Native);
             });
             Property(tr=>tr.Text, mapper =>
             {
@@ -39,8 +39,8 @@ namespace SC.DAL.NHibernate.Mappings.Code
             });
             ManyToOne<Ticket>(tr=>tr.Ticket, mapper =>
             {
-                mapper.Column("Ticket_id");
-                mapper.NotNullable(false);
+                mapper.Column("Ticket_TicketNumber");
+                mapper.NotNullable(true);
             });
         }
     }
