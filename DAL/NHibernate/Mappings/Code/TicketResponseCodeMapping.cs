@@ -17,7 +17,7 @@ namespace SC.DAL.NHibernate.Mappings.Code
             Id(tr=>tr.Id, mapper =>
             {
                 mapper.Column("Id");
-                mapper.Generator(Generators.Increment);
+                mapper.Generator(Generators.Native);
             });
             Property(tr=>tr.Text, mapper =>
             {

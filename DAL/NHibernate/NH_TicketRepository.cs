@@ -125,6 +125,7 @@ namespace SC.DAL.NHibernate
                 try
                 {
                     session.Save(response);
+                    session.SaveOrUpdate(response.Ticket);
                     tx.Commit();
                     return response;
                 }
