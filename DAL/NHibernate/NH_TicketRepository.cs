@@ -16,12 +16,12 @@ namespace SC.DAL.NHibernate
         private static ISessionFactory sessionFactory;
 
         public NhTicketRepository()
-        {         
-            var cfg = new global::NHibernate.Cfg.Configuration()
-                .Configure(Assembly.GetExecutingAssembly(), "SC.DAL.NHibernate.Configuration.hibernate.cfg.xml");
-            new SchemaUpdate(cfg).Execute(true, true);
-            sessionFactory = cfg.BuildSessionFactory();
-            //sessionFactory = new NhSqlServLoquaciousConf().SessionFactory;
+        {
+            //var cfg = new global::NHibernate.Cfg.Configuration()
+            //    .Configure(Assembly.GetExecutingAssembly(), "SC.DAL.NHibernate.Configuration.hibernate.cfg.xml");
+            //new SchemaUpdate(cfg).Execute(true, true);
+            //sessionFactory = cfg.BuildSessionFactory();
+            sessionFactory = new NhSqlServLoquaciousConf().SessionFactory;
             //sessionFactory = new FluentSqlServerConf().SessionFactory;
         }
 

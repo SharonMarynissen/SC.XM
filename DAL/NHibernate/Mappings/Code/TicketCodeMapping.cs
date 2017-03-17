@@ -14,6 +14,11 @@ namespace SC.DAL.NHibernate.Mappings.Code
     {
         public TicketCodeMapping()
         {
+            Discriminator(d =>
+            {
+                d.Column("Discriminator");
+            });
+            DiscriminatorValue("Ticket");
             Id(t => t.TicketNumber, mapper =>
             {
                 mapper.Generator(Generators.Native);
@@ -44,18 +49,19 @@ namespace SC.DAL.NHibernate.Mappings.Code
             {
                 mapper.Column("State");
                 mapper.NotNullable(false);
+                mapper.Type(NHibernateUtil.Byte);
             });
 
             Bag(t => t.Responses,
                 mapper =>
                 {
-                    mapper.Key(k => k.Column("Ticket_id"));
+                    mapper.Key(k => k.Column("Ticket_TicketNumber"));
                     mapper.Cascade(Cascade.DeleteOrphans);
                     mapper.Inverse(true);
-                }
-                //relation => relation.OneToMany(
-                //    mapping => mapping.Class(typeof(TicketResponse))
-                //    )
+                },
+                relation => relation.OneToMany(
+                    mapping => mapping.Class(typeof(TicketResponse))
+                    )
             );
         }
     }
