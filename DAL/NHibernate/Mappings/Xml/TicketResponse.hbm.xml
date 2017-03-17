@@ -9,7 +9,7 @@
     <property name="Text" not-null="true"/>
     <property name="Date" type="DateTime" not-null="true"/>
     <property name="IsClientResponse" not-null="true"/>
-    <!--<many-to-one name="Ticket" column="Ticket_TicketNumber" foreign-key="FK_dbo.TicketResponse_dbo.Ticket_Ticket_TicketNumber" class="Ticket" cascade="all-delete-orphan" not-null="true"/>    -->
+    <many-to-one name="Ticket" column="Ticket_TicketNumber" foreign-key="FK_dbo.TicketResponse_dbo.Ticket_Ticket_TicketNumber" class="Ticket" cascade="all-delete-orphan" not-null="true"/>
   
   </class>
 </hibernate-mapping>
