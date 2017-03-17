@@ -19,18 +19,21 @@ namespace SC.DAL.NHibernate.Mappings.Code
                 mapper.Column("Id");
                 mapper.Generator(Generators.Native);
             });
+
             Property(tr=>tr.Text, mapper =>
             {
                 mapper.Column("Text");
                 mapper.NotNullable(false);
                 mapper.Type(NHibernateUtil.String);
             });
+
             Property(tr=>tr.Date, mapper =>
             {
                 mapper.Column("Date");
                 mapper.NotNullable(false);
                 mapper.Type(NHibernateUtil.DateTime);
             });
+
             Property(tr=>tr.IsClientResponse, mapper =>
             {
                 mapper.Column("IsClientResponse");

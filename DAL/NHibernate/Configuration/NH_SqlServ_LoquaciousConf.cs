@@ -22,25 +22,22 @@ namespace SC.DAL.NHibernate.Configuration
             {
                 db.Dialect<MsSql2012Dialect>();
                 db.Driver<SqlClientDriver>();
-                db.ConnectionStringName = "SC_NHibernate";
-                //db.ConnectionString =
-                //    @"Data Source=.\SQLSERVER2012;Initial Catalog=SC_NHibernate;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+                db.ConnectionStringName = "SC_NHibernate";            
                 db.ConnectionReleaseMode = ConnectionReleaseMode.OnClose;
-                db.LogSqlInConsole = true;
                 db.LogFormattedSql = true;
             })
             .AddMapping(GetMappings());
 
             sessionFactory = config.BuildSessionFactory();
-        //    var session = sessionFactory.OpenSession();
+            var session = sessionFactory.OpenSession();
 
-        //    using (var tx = session.BeginTransaction())
-        //    {
-        //        new SchemaUpdate(config).Execute(true, false);
-        //        tx.Commit();
-        //    }
-        //    session.Clear();
-       }
+            using (var tx = session.BeginTransaction())
+            {
+                new SchemaUpdate(config).Execute(false, true);
+                tx.Commit();
+            }
+            session.Clear();
+        }
 
         private HbmMapping GetMappings()
         {
