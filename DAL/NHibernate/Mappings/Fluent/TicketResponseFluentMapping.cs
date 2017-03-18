@@ -18,7 +18,7 @@ namespace SC.DAL.NHibernate.Mappings.Fluent
                 .CustomType(typeof(DateTime));
             Map(tr => tr.IsClientResponse, "IsClientResponse").Nullable()
                 .CustomType(typeof(bool));
-            References<Ticket>(tr => tr.Ticket, "Ticket_TicketNumber");
+            References<Ticket>(tr => tr.Ticket, "Ticket_TicketNumber").ForeignKey("FK_dbo.TicketResponse_dbo.Ticket_Ticket_TicketNumber");
         }
     }
 }

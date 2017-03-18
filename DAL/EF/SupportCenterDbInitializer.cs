@@ -10,7 +10,7 @@ namespace SC.DAL.EF
 {
   internal class SupportCenterDbInitializer 
         //: DropCreateDatabaseIfModelChanges<SupportCenterDbContext>
-    : DropCreateDatabaseAlways<SupportCenterDbContext> 
+        :DropCreateDatabaseAlways<SupportCenterDbContext>
   {
     protected override void Seed(SupportCenterDbContext context)
     {

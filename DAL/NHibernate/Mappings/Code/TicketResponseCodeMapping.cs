@@ -44,6 +44,7 @@ namespace SC.DAL.NHibernate.Mappings.Code
             {
                 mapper.Column("Ticket_TicketNumber");
                 mapper.NotNullable(true);
+                mapper.ForeignKey("FK_dbo.TicketResponse_dbo.Ticket_Ticket_TicketNumber");
             });
         }
     }

@@ -20,11 +20,11 @@ namespace SC.DAL.NHibernate
             //xml
             //var cfg = new global::NHibernate.Cfg.Configuration()
             //    .Configure(Assembly.GetExecutingAssembly(), "SC.DAL.NHibernate.Configuration.hibernate.cfg.xml");
-            //new SchemaUpdate(cfg).Execute(false, true);
+            //new SchemaUpdate(cfg).Execute(true, true);
             //sessionFactory = cfg.BuildSessionFactory();
 
-            sessionFactory = new NhSqlServLoquaciousConf().SessionFactory;      //code
-            //sessionFactory = new FluentSqlServerConf().SessionFactory;        //fluent NHibernate
+            //sessionFactory = new NhSqlServLoquaciousConf().SessionFactory;      //code
+            sessionFactory = new FluentSqlServerConf().SessionFactory;        //fluent NHibernate
         }
 
         public IEnumerable<Ticket> ReadTickets()

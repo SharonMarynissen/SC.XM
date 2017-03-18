@@ -22,7 +22,7 @@ namespace SC.DAL.NHibernate.Configuration
             {
                 db.Dialect<MsSql2012Dialect>();
                 db.Driver<SqlClientDriver>();
-                db.ConnectionStringName = "SC_NHibernate";            
+                db.ConnectionStringName = "SupportCenterDB_EFCodeFirst";            
                 db.ConnectionReleaseMode = ConnectionReleaseMode.OnClose;
                 db.LogFormattedSql = true;
             })
@@ -33,7 +33,7 @@ namespace SC.DAL.NHibernate.Configuration
 
             using (var tx = session.BeginTransaction())
             {
-                new SchemaUpdate(config).Execute(false, true);
+                new SchemaUpdate(config).Execute(true, true);
                 tx.Commit();
             }
             session.Clear();
