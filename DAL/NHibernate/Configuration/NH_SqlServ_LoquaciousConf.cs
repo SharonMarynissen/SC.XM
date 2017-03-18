@@ -24,7 +24,6 @@ namespace SC.DAL.NHibernate.Configuration
                 db.Driver<SqlClientDriver>();
                 db.ConnectionStringName = "SupportCenterDB_EFCodeFirst";            
                 db.ConnectionReleaseMode = ConnectionReleaseMode.OnClose;
-                db.LogFormattedSql = true;
             })
             .AddMapping(GetMappings());
 

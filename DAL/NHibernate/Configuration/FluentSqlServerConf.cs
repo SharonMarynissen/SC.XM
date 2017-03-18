@@ -27,7 +27,6 @@ namespace SC.DAL.NHibernate.Configuration
                 .Database(MsSqlConfiguration
                     .MsSql2012
                     .ConnectionString(c => c.FromConnectionStringWithKey("SupportCenterDB_EFCodeFirst"))
-                    .ShowSql()
                 ).CurrentSessionContext<ThreadLocalSessionContext>()
                 .BuildConfiguration();
               sessionFactory = config.BuildSessionFactory();
